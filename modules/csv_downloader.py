@@ -6,7 +6,7 @@ import pandas as pd
 
 from modules.utils import bcolors as bc
 
-OID_URL = 'https://storage.googleapis.com/openimages/2018_04/'
+OID_URL = 'https://storage.googleapis.com/openimages/'
 
 def TTV(csv_dir, name_file, args_y):
     '''
@@ -39,10 +39,18 @@ def error_csv(file, csv_dir, args_y):
 
         if ans.lower() == 'y':
             folder = str(os.path.basename(file)).split('-')[0]
+           # This part of the code was adapted to enable OID-V6 download
             if folder != 'class':
-                FILE_URL = str(OID_URL + folder + '/' + file)
+                if type_csv == 'train':
+                    FILE_URL = str(OID_URL + 'v6/oidv6-' + file)
+                elif type_csv == 'validation':
+                    FILE_URL = str(OID_URL + 'v5/' + file)
+                elif type_csv == 'test':
+                    FILE_URL = str(OID_URL + 'v5/' + file)
+                else:
+                    FILE_URL = str(OID_URL + '2018_04/' + folder + '/' +file)
             else:
-                FILE_URL = str(OID_URL + file)
+                FILE_URL = str(OID_URL + '2018_04/' +file)
 
             FILE_PATH = os.path.join(csv_dir, file)
             save(FILE_URL, FILE_PATH)
