@@ -1,6 +1,11 @@
 pandas
 numpy
 awscli
-urllib3
+six
+matplotlib
+urllib3 <1.26, >=1.25.4
 tqdm
 opencv-python
+python3-xlib
+pyyaml
+pillow
