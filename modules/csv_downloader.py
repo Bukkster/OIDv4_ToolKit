@@ -8,7 +8,7 @@ from modules.utils import bcolors as bc
 
 OID_URL = 'https://storage.googleapis.com/openimages/'
 
-def TTV(csv_dir, name_file, args_y):
+def TTV(csv_dir, name_file, args_y, type_csv):
     '''
     Manage error_csv and read the correct .csv file.
 
@@ -17,11 +17,11 @@ def TTV(csv_dir, name_file, args_y):
     :return: None
     '''
     CSV = os.path.join(csv_dir, name_file)
-    error_csv(name_file, csv_dir, args_y)
+    error_csv(name_file, csv_dir, args_y, type_csv)
     df_val = pd.read_csv(CSV)
     return df_val
 
-def error_csv(file, csv_dir, args_y):
+def error_csv(file, csv_dir, args_y, type_csv):
     '''
     Check the presence of the required .csv files.
 
